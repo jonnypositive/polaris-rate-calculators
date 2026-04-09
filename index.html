@@ -15,6 +15,263 @@ header{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:
 .logo-star{color:var(--gold);font-size:22px;line-height:1;letter-spacing:-2px;}
 .logo-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--cream);letter-spacing:1px;}
 .logo-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:1px;}
+nav{display:flex;align-items:stretch;gap:0;overflow-x:visible;padding:0 24px;border-bottom:1px solid var(--border);scrollbar-width:none;background:var(--navy-mid);}
+nav::-webkit-scrollbar{display:none;}
+.tab{padding:14px 18px 16px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-dim);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s;position:relative;bottom:-1px;}
+.tab:hover{color:var(--gold-light);}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-group{position:relative;display:flex;align-items:stretch;}
+.nav-group-label{padding:14px 18px 16px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-dim);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s;position:relative;bottom:-1px;display:flex;align-items:center;gap:5px;}
+.nav-group-label:hover,.nav-group-label.group-active{color:var(--gold-light);border-bottom-color:var(--gold);}
+.nav-group-label.group-active{color:var(--gold);}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;min-width:180px;background:var(--navy-card);border:1px solid var(--border);z-index:200;flex-direction:column;}
+.nav-dropdown.open{display:flex;}
+.nav-dropdown-item{padding:10px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-dim);background:none;border:none;cursor:pointer;text-align:left;white-space:nowrap;transition:all 0.2s;border-left:2px solid transparent;}
+.nav-dropdown-item:hover{color:var(--gold-light);background:rgba(201,168,76,0.05);border-left-color:var(--gold-dim);}
+.nav-dropdown-item.active{color:var(--gold);border-left-color:var(--gold);}
+main{max-width:680px;margin:0 auto;padding:40px 24px 0;}
+.calc-panel{display:none;}
+.calc-panel.active{display:block;}
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--cream);margin-bottom:6px;letter-spacing:0.5px;}
+.panel-desc{font-size:10px;color:var(--cream-dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;}
+.card{background:var(--navy-card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:20px;}
+.card-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;}
+.input-row{display:grid;grid-template-columns:1fr 140px;gap:12px;align-items:center;margin-bottom:14px;}
+.input-row label{font-size:11px;color:var(--cream-dim);letter-spacing:0.5px;}
+.input-row label em{font-style:normal;font-size:9px;color:var(--gold-dim);display:block;margin-top:2px;}
+.input-group{position:relative;display:flex;align-items:center;}
+.prefix,.suffix{position:absolute;font-size:11px;color:var(--gold-dim);pointer-events:none;z-index:1;}
+.prefix{left:10px;}.suffix{right:10px;}
+input[type="number"]{width:100%;background:var(--navy-input);border:1px solid var(--border);border-radius:3px;color:var(--gold-light);font-family:'DM Mono',monospace;font-size:13px;padding:9px 12px;-moz-appearance:textfield;outline:none;transition:border-color 0.2s;}
+input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;}
+input[type="number"]:focus{border-color:var(--gold);}
+.has-prefix input[type="number"]{padding-left:22px;}
+.has-suffix input[type="number"]{padding-right:26px;}
+.slider-row{display:grid;grid-template-columns:1fr 140px;gap:12px;align-items:center;margin-bottom:14px;}
+.slider-row label{font-size:11px;color:var(--cream-dim);}
+.slider-wrap{display:flex;align-items:center;gap:8px;}
+input[type="range"]{-webkit-appearance:none;flex:1;height:3px;background:var(--border);border-radius:2px;outline:none;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--gold);border-radius:50%;cursor:pointer;}
+.slider-val{font-size:11px;color:var(--gold-light);min-width:36px;text-align:right;}
+.divider{border:none;border-top:1px solid var(--border);margin:20px 0;}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:11px;border-bottom:1px solid rgba(201,168,76,0.08);}
+.result-row:last-child{border-bottom:none;}
+.result-label{color:var(--cream-dim);}
+.result-value{font-size:13px;color:var(--cream);font-weight:500;}
+.result-value.highlight{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;margin-top:8px;border-top:1px solid var(--gold-dim);}
+.total-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.total-value{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);}
+.section-header{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dim);margin:20px 0 12px;}
+.copy-btn{background:none;border:1px solid var(--border);color:var(--cream-dim);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;transition:all 0.2s;float:right;margin-top:-4px;}
+.copy-btn:hover{border-color:var(--gold);color:var(--gold);}
+.copy-btn.copied{border-color:var(--green);color:var(--green);}
+.note{font-size:10px;color:var(--gold-dim);font-style:italic;margin-top:10px;}
+.variance-badge{display:inline-block;padding:3px 10px;border-radius:2px;font-size:11px;font-weight:500;}
+.variance-badge.pos{background:rgba(76,175,132,0.15);color:var(--green);}
+.variance-badge.neg{background:rgba(224,96,96,0.15);color:var(--red);}
+@media(max-width:520px){.input-row,.slider-row{grid-template-columns:1fr;gap:6px;}.input-group{max-width:160px;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <span class="logo-star">&#10022;&#10022;&#10022;&#10022;</span>
+    <div><span class="logo-text">Rate Calculator Tool</span><span class="logo-sub">For Sales Team</span></div>
+  </div>
+</header>
+<nav id="nav">
+  <button class="tab active" onclick="switchTab(5)">F&amp;B Minimum</button>
+  <div class="nav-group" id="group-rooms">
+    <button class="nav-group-label" id="group-rooms-label">Rooms &#9660;</button>
+    <div class="nav-dropdown" id="dropdown-rooms">
+      <button class="nav-dropdown-item" onclick="switchTab(1)">Room Cost</button>
+      <button class="nav-dropdown-item" onclick="switchTab(0)">Per Diem</button>
+    </div>
+  </div>
+  <div class="nav-group" id="group-menu">
+    <button class="nav-group-label" id="group-menu-label">Menu Pricing &#9660;</button>
+    <div class="nav-dropdown" id="dropdown-menu">
+      <button class="nav-dropdown-item" onclick="switchTab(2)">Menu Cost</button>
+      <button class="nav-dropdown-item" onclick="switchTab(3)">Inclusive Menu</button>
+    </div>
+  </div>
+  <button class="tab" onclick="switchTab(4)">Meeting Space Rental</button>
+</nav>
+<main>
+<div class="calc-panel" id="panel-0">
+  <div class="panel-title">Per Diem Calculator</div>
+  <div class="panel-desc">Blended rate for government / per diem group room blocks</div>
+  <div class="card"><span class="card-label">Inputs</span>
+    <div class="input-row"><label>Total Room Nights</label><div class="input-group"><input type="number" id="pd-rn" value="138" oninput="calcPerDiem()"></div></div>
+    <div class="input-row"><label>Target ADR</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="pd-adr" value="259" oninput="calcPerDiem()"></div></div>
+    <div class="slider-row"><label>Per Diem Mix</label><div class="slider-wrap"><input type="range" min="0" max="100" value="20" id="pd-mix-slider" oninput="document.getElementById('pd-mix-val').textContent=this.value+'%';document.getElementById('pd-mix').value=this.value;calcPerDiem();"><span class="slider-val" id="pd-mix-val">20%</span><input type="hidden" id="pd-mix" value="20"></div></div>
+    <div class="input-row"><label>Per Diem Rate<em>Use $168 for Jun/Jul/Aug</em></label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="pd-rate" value="168" oninput="calcPerDiem()"></div></div>
+  </div>
+  <div class="card"><span class="card-label">Results <button class="copy-btn" onclick="copyResults('pd')">Copy</button></span>
+    <div class="result-row"><span class="result-label">Target Revenue</span><span class="result-value" id="pd-target-rev">-</span></div>
+    <div class="result-row"><span class="result-label">Per Diem Rooms (<span id="pd-pct">20%</span>)</span><span class="result-value" id="pd-pd-rooms">-</span></div>
+    <div class="result-row"><span class="result-label">Normal Rate Rooms (<span id="pd-norm-pct">80%</span>)</span><span class="result-value" id="pd-norm-rooms">-</span></div>
+    <hr class="divider">
+    <div class="result-row"><span class="result-label">Required Normal Rate</span><span class="result-value highlight" id="pd-normal-rate">-</span></div>
+    <div class="result-row"><span class="result-label">Per Diem Revenue</span><span class="result-value" id="pd-pd-rev">-</span></div>
+    <div class="result-row"><span class="result-label">Normal Revenue</span><span class="result-value" id="pd-norm-rev">-</span></div>
+  </div>
+</div>
+<div class="calc-panel" id="panel-1">
+  <div class="panel-title">Total Room Cost</div>
+  <div class="panel-desc">All-in nightly and stay cost with taxes and facility fees</div>
+  <div class="card"><span class="card-label">Inputs</span>
+    <div class="input-row"><label>Room Rate</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="rc-rate" value="269" oninput="calcRoomCost()"></div></div>
+    <div class="input-row"><label>Facility Fee</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="rc-fee" value="25" oninput="calcRoomCost()"></div></div>
+    <div class="input-row"><label>Number of Nights</label><div class="input-group"><input type="number" id="rc-nights" value="1" oninput="calcRoomCost()"></div></div>
+  </div>
+  <div class="card"><span class="card-label">Nightly Breakdown <button class="copy-btn" onclick="copyResults('rc')">Copy</button></span>
+    <p class="section-header">Base + Fees</p>
+    <div class="result-row"><span class="result-label">Room Rate</span><span class="result-value" id="rc-base">-</span></div>
+    <div class="result-row"><span class="result-label">PIF on Room (5%)</span><span class="result-value" id="rc-pif-room">-</span></div>
+    <div class="result-row"><span class="result-label">Facility Fee</span><span class="result-value" id="rc-ff">-</span></div>
+    <div class="result-row"><span class="result-label">PIF on Facility Fee (5%)</span><span class="result-value" id="rc-pif-ff">-</span></div>
+    <div class="result-row"><span class="result-label">Facility Fee Tax (10.2%)</span><span class="result-value" id="rc-ff-tax">-</span></div>
+    <p class="section-header">Colorado Taxes</p>
+    <div class="result-row"><span class="result-label">CO Sales Tax (2.9%)</span><span class="result-value" id="rc-co-tax">-</span></div>
+    <div class="result-row"><span class="result-label">El Paso County (1.23%)</span><span class="result-value" id="rc-ep-tax">-</span></div>
+    <div class="result-row"><span class="result-label">CO Springs City (3.07%)</span><span class="result-value" id="rc-cs-tax">-</span></div>
+    <div class="result-row"><span class="result-label">CO Springs Lodging (2%)</span><span class="result-value" id="rc-lodge-tax">-</span></div>
+    <div class="result-row"><span class="result-label">Pikes Peak Rural Trans. (1%)</span><span class="result-value" id="rc-pp-tax">-</span></div>
+    <div class="result-row"><span class="result-label">Total Tax (10.2%)</span><span class="result-value" id="rc-total-tax">-</span></div>
+    <div class="total-row"><span class="total-label">Grand Total / Night</span><span class="total-value" id="rc-grand">-</span></div>
+    <hr class="divider">
+    <div class="total-row"><span class="total-label">Total for <span id="rc-night-label">1</span> Night(s)</span><span class="total-value" id="rc-stay-total">-</span></div>
+  </div>
+</div>
+<div class="calc-panel" id="panel-2">
+  <div class="panel-title">Total Menu Cost</div>
+  <div class="panel-desc">Per-person all-in pricing with service charge, PIF, and sales tax</div>
+  <div class="card"><span class="card-label">Standard Group</span>
+    <div class="input-row"><label>Menu Price per Person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="mc-price" value="185" oninput="calcMenuCost()"></div></div>
+    <hr class="divider">
+    <div class="result-row"><span class="result-label">Menu Price</span><span class="result-value" id="mc-base">-</span></div>
+    <div class="result-row"><span class="result-label">Service Charge (26%)</span><span class="result-value" id="mc-svc">-</span></div>
+    <div class="result-row"><span class="result-label">PIF (3%)</span><span class="result-value" id="mc-pif">-</span></div>
+    <div class="result-row"><span class="result-label">Sales Tax (8.2%)</span><span class="result-value" id="mc-tax">-</span></div>
+    <div class="total-row"><span class="total-label">Total per Person</span><span class="total-value" id="mc-total">-</span></div>
+  </div>
+  <div class="card"><span class="card-label">Tax-Exempt Group</span>
+    <div class="input-row"><label>Menu Price per Person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="mc-exempt-price" value="30" oninput="calcMenuCostExempt()"></div></div>
+    <hr class="divider">
+    <div class="result-row"><span class="result-label">Menu Price</span><span class="result-value" id="mce-base">-</span></div>
+    <div class="result-row"><span class="result-label">Service Charge (25%)</span><span class="result-value" id="mce-svc">-</span></div>
+    <div class="result-row"><span class="result-label">PIF (3%)</span><span class="result-value" id="mce-pif">-</span></div>
+    <div class="total-row"><span class="total-label">Total per Person (No Tax)</span><span class="total-value" id="mce-total">-</span></div>
+    <p class="note">* Tax exempt - no sales tax applied</p>
+  </div>
+</div>
+<div class="calc-panel" id="panel-3">
+  <div class="panel-title">Inclusive Menu Cost</div>
+  <div class="panel-desc">Build inclusive pricing from subtotal, or reverse-calculate from inclusive price</div>
+  <div class="card"><span class="card-label">Forward: Subtotal to Inclusive</span>
+    <div class="input-row"><label>F&amp;B Subtotal</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="im-sub" value="62072.80" step="0.01" oninput="calcInclusive()"></div></div>
+    <hr class="divider">
+    <div class="result-row"><span class="result-label">Subtotal</span><span class="result-value" id="im-subtotal">-</span></div>
+    <div class="result-row"><span class="result-label">Service Charge (25%)</span><span class="result-value" id="im-svc">-</span></div>
+    <div class="result-row"><span class="result-label">PIF (3%)</span><span class="result-value" id="im-pif">-</span></div>
+    <div class="result-row"><span class="result-label">PIF Tax (8.2%)</span><span class="result-value" id="im-pif-tax">-</span></div>
+    <div class="result-row"><span class="result-label">SVC Tax (8.2%)</span><span class="result-value" id="im-svc-tax">-</span></div>
+    <div class="result-row"><span class="result-label">Subtotal Tax (8.2%)</span><span class="result-value" id="im-sub-tax">-</span></div>
+    <div class="result-row"><span class="result-label">Total Tax</span><span class="result-value" id="im-total-tax">-</span></div>
+    <div class="total-row"><span class="total-label">Inclusive Total</span><span class="total-value" id="im-total">-</span></div>
+  </div>
+  <div class="card"><span class="card-label">Reverse: Inclusive to Subtotal</span>
+    <div class="input-row"><label>Inclusive Price</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="im-inclusive" value="" step="0.01" placeholder="Enter inclusive amount" oninput="calcReverse()"></div></div>
+    <hr class="divider">
+    <div class="result-row"><span class="result-label">Implied Subtotal</span><span class="result-value highlight" id="im-rev-sub">-</span></div>
+    <p class="note">Multiplier: 1.3924 (inclusive divided by 1.3924)</p>
+  </div>
+</div>
+<div class="calc-panel" id="panel-4">
+  <div class="panel-title">Meeting Space Rental</div>
+  <div class="panel-desc">All-in meeting room rental with PIF and sales tax</div>
+  <div class="card"><span class="card-label">Input</span>
+    <div class="input-row"><label>Room Rental Rate</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="rr-rate" value="500" oninput="calcRoomRental()"></div></div>
+  </div>
+  <div class="card"><span class="card-label">Breakdown <button class="copy-btn" onclick="copyResults('rr')">Copy</button></span>
+    <div class="result-row"><span class="result-label">Room Rental</span><span class="result-value" id="rr-base">-</span></div>
+    <div class="result-row"><span class="result-label">PIF (3%)</span><span class="result-value" id="rr-pif">-</span></div>
+    <div class="result-row"><span class="result-label">Sales Tax on PIF (8.2%)</span><span class="result-value" id="rr-tax">-</span></div>
+    <div class="total-row"><span class="total-label">Total Inclusive</span><span class="total-value" id="rr-total">-</span></div>
+  </div>
+</div>
+<div class="calc-panel active" id="panel-5">
+  <div class="panel-title">F&amp;B Minimum</div>
+  <div class="panel-desc">Revenue per Group Room Night vs RGRN goal</div>
+  <div class="card"><span class="card-label">Group Setup</span>
+    <div class="input-row"><label>Total Group Rooms</label><div class="input-group"><input type="number" id="fb-rooms" value="50" oninput="calcFB()"></div></div>
+    <div class="input-row"><label>RGRN Goal</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-goal" value="120" oninput="calcFB()"></div></div>
+  </div>
+  <div class="card"><span class="card-label">Meal Functions</span>
+    <div class="input-row"><label>Continental Breakfast / person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-cbf" value="65" oninput="calcFB()"></div></div>
+    <div class="input-row"><label># of Continental Breakfasts</label><div class="input-group"><input type="number" id="fb-cbf-ct" value="1" oninput="calcFB()"></div></div>
+    <hr class="divider">
+    <div class="input-row"><label>Full Breakfast / person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-bkf" value="50" oninput="calcFB()"></div></div>
+    <div class="input-row"><label># of Full Breakfasts</label><div class="input-group"><input type="number" id="fb-bkf-ct" value="0" oninput="calcFB()"></div></div>
+    <hr class="divider">
+    <div class="input-row"><label>Lunch / person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-lunch" value="110" oninput="calcFB()"></div></div>
+    <div class="input-row"><label># of Lunches</label><div class="input-group"><input type="number" id="fb-lunch-ct" value="1" oninput="calcFB()"></div></div>
+    <hr class="divider">
+    <div class="input-row"><label>Full Day Break / person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-brk" value="30" oninput="calcFB()"></div></div>
+    <div class="input-row"><label># of Full Day Breaks</label><div class="input-group"><input type="number" id="fb-brk-ct" value="0" oninput="calcFB()"></div></div>
+    <hr class="divider">
+    <div class="input-row"><label>Dinner / person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-dinner" value="153" oninput="calcFB()"></div></div>
+    <div class="input-row"><label># of Dinners</label><div class="input-group"><input type="number" id="fb-dinner-ct" value="1" oninput="calcFB()"></div></div>
+    <hr class="divider">
+    <div class="input-row"><label>Reception (Food + Bev) / person</label><div class="input-group has-prefix"><span class="prefix">$</span><input type="number" id="fb-rec" value="185" oninput="calcFB()"></div></div>
+    <div class="input-row"><label># of Receptions</label><div class="input-group"><input type="number" id="fb-rec-ct" value="1" oninput="calcFB()"></div></div>
+  </div>
+  <div class="card"><span class="card-label">Results <button class="copy-btn" onclick="copyResults('fb')">Copy</button></span>
+    <div class="result-row"><span class="result-label">Total F&amp;B Revenue</span><span class="result-value" id="fb-total">-</span></div>
+    <div class="result-row"><span class="result-label">Revenue per Group Room Night</span><span class="result-value highlight" id="fb-rgrn">-</span></div>
+    <div class="result-row"><span class="result-label">Goal RGRN</span><span class="result-value" id="fb-goal-display">-</span></div>
+    <div class="result-row"><span class="result-label">Variance to Goal</span><span class="result-value" id="fb-variance">-</span></div>
+  </div>
+</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(n,d=2)=>isNaN(n)?'-':'$'+n.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const fmtN=(n,d=0)=>isNaN(n)?'-':n.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+document.querySelectorAll('.nav-group').forEach(function(group){var dd=group.querySelector('.nav-dropdown');group.addEventListener('mouseenter',function(){dd.classList.add('open');});group.addEventListener('mouseleave',function(){dd.classList.remove('open');});});
+function switchTab(i){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-dropdown-item').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.nav-group-label').forEach(l=>l.classList.remove('group-active'));document.querySelectorAll('.calc-panel').forEach((p,j)=>p.classList.toggle('active',i===j));if(i===5){document.querySelectorAll('.tab')[0].classList.add('active');}else if(i===4){document.querySelectorAll('.tab')[1].classList.add('active');}else if(i===1||i===0){$('group-rooms-label').classList.add('group-active');document.querySelectorAll('#group-rooms .nav-dropdown-item').forEach((item,idx)=>{if((i===1&&idx===0)||(i===0&&idx===1))item.classList.add('active');});}else if(i===2||i===3){$('group-menu-label').classList.add('group-active');document.querySelectorAll('#group-menu .nav-dropdown-item').forEach((item,idx)=>{if((i===2&&idx===0)||(i===3&&idx===1))item.classList.add('active');});}}
+function calcPerDiem(){const rn=+$('pd-rn').value||0,adr=+$('pd-adr').value||0,mix=+$('pd-mix').value/100,pdRate=+$('pd-rate').value||0,targetRev=rn*adr,pdRooms=Math.round(rn*mix),normRooms=rn-pdRooms,pdRev=pdRooms*pdRate,normRev=targetRev-pdRev,normalRate=normRooms>0?normRev/normRooms:0;$('pd-target-rev').textContent=fmt(targetRev);$('pd-pd-rooms').textContent=fmtN(pdRooms)+' rooms';$('pd-norm-rooms').textContent=fmtN(normRooms)+' rooms';$('pd-normal-rate').textContent=fmt(normalRate);$('pd-pd-rev').textContent=fmt(pdRev);$('pd-norm-rev').textContent=fmt(normRev);$('pd-pct').textContent=Math.round(mix*100)+'%';$('pd-norm-pct').textContent=Math.round((1-mix)*100)+'%';}
+function calcRoomCost(){const rate=+$('rc-rate').value||0,ff=+$('rc-fee').value||0,nights=+$('rc-nights').value||1,pifRoom=rate*0.05,pifFF=ff*0.05,ffTax=(ff+pifFF)*0.102,coTax=rate*0.029,epTax=rate*0.0123,csTax=rate*0.0307,lodgeTax=(rate+pifRoom)*0.02,ppTax=(rate+pifRoom)*0.01,totalTax=coTax+epTax+csTax+lodgeTax+ppTax,grand=rate+pifRoom+ff+pifFF+ffTax+totalTax;$('rc-base').textContent=fmt(rate);$('rc-pif-room').textContent=fmt(pifRoom);$('rc-ff').textContent=fmt(ff);$('rc-pif-ff').textContent=fmt(pifFF);$('rc-ff-tax').textContent=fmt(ffTax);$('rc-co-tax').textContent=fmt(coTax);$('rc-ep-tax').textContent=fmt(epTax);$('rc-cs-tax').textContent=fmt(csTax);$('rc-lodge-tax').textContent=fmt(lodgeTax);$('rc-pp-tax').textContent=fmt(ppTax);$('rc-total-tax').textContent=fmt(totalTax);$('rc-grand').textContent=fmt(grand);$('rc-night-label').textContent=nights;$('rc-stay-total').textContent=fmt(grand*nights);}
+function calcMenuCost(){const p=+$('mc-price').value||0,s=p*0.26,pif=(p+s)*0.03,tax=(p+s+pif)*0.082,t=p+s+pif+tax;$('mc-base').textContent=fmt(p);$('mc-svc').textContent=fmt(s);$('mc-pif').textContent=fmt(pif);$('mc-tax').textContent=fmt(tax);$('mc-total').textContent=fmt(t);}
+function calcMenuCostExempt(){const p=+$('mc-exempt-price').value||0,s=p*0.25,pif=(p+s)*0.03,t=p+s+pif;$('mce-base').textContent=fmt(p);$('mce-svc').textContent=fmt(s);$('mce-pif').textContent=fmt(pif);$('mce-total').textContent=fmt(t);}
+function calcInclusive(){const sub=+$('im-sub').value||0,svc=sub*0.25,pif=sub*0.03,pifTax=pif*0.082,svcTax=svc*0.082,subTax=sub*0.082,totalTax=pifTax+svcTax+subTax,total=sub+svc+pif+totalTax;$('im-subtotal').textContent=fmt(sub);$('im-svc').textContent=fmt(svc);$('im-pif').textContent=fmt(pif);$('im-pif-tax').textContent=fmt(pifTax);$('im-svc-tax').textContent=fmt(svcTax);$('im-sub-tax').textContent=fmt(subTax);$('im-total-tax').textContent=fmt(totalTax);$('im-total').textContent=fmt(total);}
+function calcReverse(){const inc=+$('im-inclusive').value;if(!inc){$('im-rev-sub').textContent='-';return;}$('im-rev-sub').textContent=fmt(inc/1.3924);}
+function calcRoomRental(){const r=+$('rr-rate').value||0,pif=r*0.03,tax=pif*0.082,t=r+pif+tax;$('rr-base').textContent=fmt(r);$('rr-pif').textContent=fmt(pif);$('rr-tax').textContent=fmt(tax);$('rr-total').textContent=fmt(t);}
+function calcFB(){const rooms=+$('fb-rooms').value||0,goal=+$('fb-goal').value||0;let total=0;[['fb-cbf','fb-cbf-ct'],['fb-bkf','fb-bkf-ct'],['fb-lunch','fb-lunch-ct'],['fb-brk','fb-brk-ct'],['fb-dinner','fb-dinner-ct'],['fb-rec','fb-rec-ct']].forEach(([p,c])=>{total+=(+$(p).value||0)*(+$(c).value||0)*rooms;});const rgrn=rooms>0?total/rooms:0,variance=rgrn-goal;$('fb-total').textContent=fmt(total);$('fb-rgrn').textContent=fmt(rgrn);$('fb-goal-display').textContent=fmt(goal);const v=$('fb-variance');v.innerHTML=variance>=0?'<span class="variance-badge pos">+'+fmt(variance)+' above goal</span>':'<span class="variance-badge neg">'+fmt(variance)+' below goal</span>';}
+function copyResults(type){let text='',now=new Date().toLocaleDateString();if(type==='pd'){text='PER DIEM - '+now+'\nRequired Normal Rate: '+$('pd-normal-rate').textContent+'\nTarget Revenue: '+$('pd-target-rev').textContent;}else if(type==='rc'){text='ROOM COST - '+now+'\nGrand Total/Night: '+$('rc-grand').textContent+'\nStay Total: '+$('rc-stay-total').textContent;}else if(type==='rr'){text='MEETING SPACE RENTAL - '+now+'\nTotal Inclusive: '+$('rr-total').textContent;}else if(type==='fb'){text='F&B MINIMUM - '+now+'\nTotal F&B: '+$('fb-total').textContent+'\nRGRN: '+$('fb-rgrn').textContent+'\nGoal: '+$('fb-goal-display').textContent;}navigator.clipboard.writeText(text).then(()=>{document.querySelectorAll('.copy-btn').forEach(b=>{if(b.onclick&&b.onclick.toString().includes(type)){b.textContent='Copied!';b.classList.add('copied');setTimeout(()=>{b.textContent='Copy';b.classList.remove('copied');},2000);}});});}
+calcPerDiem();calcRoomCost();calcMenuCost();calcMenuCostExempt();calcInclusive();calcRoomRental();calcFB();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Calculator Tool for Sales Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--gold:#C9A84C;--gold-dim:#9E7E35;--gold-light:#E8CC80;--navy:#0B1520;--navy-mid:#112030;--navy-card:#162840;--navy-input:#0D1D30;--cream:#F0E6CC;--cream-dim:#B8A880;--white:#FAFAF7;--green:#4CAF84;--red:#E06060;--border:rgba(201,168,76,0.25);}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--cream);font-family:'DM Mono',monospace;min-height:100vh;padding-bottom:80px;}
+header{background:var(--navy-mid);border-bottom:1px solid var(--border);padding:20px 24px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px);}
+.logo{display:flex;align-items:center;gap:14px;}
+.logo-star{color:var(--gold);font-size:22px;line-height:1;letter-spacing:-2px;}
+.logo-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--cream);letter-spacing:1px;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;display:block;margin-top:1px;}
 nav{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:0 24px;border-bottom:1px solid var(--border);scrollbar-width:none;background:var(--navy-mid);}
 nav::-webkit-scrollbar{display:none;}
 .tab{padding:14px 18px 16px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream-dim);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s;position:relative;bottom:-1px;}
